@@ -588,6 +588,25 @@ function gsmReset() {
 
 // Zone Mode Change
 function zoneModeChange(zone, mode) {
+  const selectElement = event.target;
+  const statusElement = document.getElementById(`z${zone}Status`);
+  const customTriggerText = selectElement.closest('.custom-select-wrapper')?.querySelector('.custom-select-trigger span');
+  
+  // Clear previous status classes
+  selectElement.classList.remove('status-fire', 'status-warning');
+  statusElement.classList.remove('status-fire', 'status-warning');
+  if (customTriggerText) customTriggerText.classList.remove('status-fire-text', 'status-warning-text');
+
+  if (mode === "FIRE__") {
+    selectElement.classList.add('status-fire');
+    statusElement.classList.add('status-fire');
+    if (customTriggerText) customTriggerText.classList.add('status-fire-text');
+  } else if (mode !== "") {
+    selectElement.classList.add('status-warning');
+    statusElement.classList.add('status-warning');
+    if (customTriggerText) customTriggerText.classList.add('status-warning-text');
+  }
+
   if (mode !== "") {
     sendCommand("Z" + zone + "_" + mode);
     showAlert(`Zone ${zone} mode changed to ${mode}`, "success");
@@ -696,6 +715,14 @@ function initCustomSelects() {
       const customOption = document.createElement('div');
       customOption.className = 'custom-option';
       if (option.selected) customOption.classList.add('selected');
+      
+      // Apply list item colors
+      if (option.value === "FIRE__") {
+        customOption.classList.add('status-fire-text');
+      } else if (option.value !== "") {
+        customOption.classList.add('status-warning-text');
+      }
+
       customOption.textContent = option.text;
       customOption.dataset.value = option.value;
       
