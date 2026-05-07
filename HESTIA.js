@@ -736,6 +736,7 @@ function initCustomSelects() {
         customOption.classList.add('selected');
         
         wrapper.classList.remove('open');
+        wrapper.closest('.zone-block, .card')?.classList.remove('is-open');
         
         // Trigger the original onchange event
         const event = new Event('change');
@@ -752,15 +753,20 @@ function initCustomSelects() {
       e.stopPropagation();
       // Close other dropdowns
       document.querySelectorAll('.custom-select-wrapper').forEach(w => {
-        if (w !== wrapper) w.classList.remove('open');
+        if (w !== wrapper) {
+          w.classList.remove('open');
+          w.closest('.zone-block, .card')?.classList.remove('is-open');
+        }
       });
-      wrapper.classList.toggle('open');
+      const isOpen = wrapper.classList.toggle('open');
+      wrapper.closest('.zone-block, .card')?.classList.toggle('is-open', isOpen);
     };
   });
   
   // Close when clicking outside
   document.addEventListener('click', () => {
     document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+    document.querySelectorAll('.zone-block, .card').forEach(c => c.classList.remove('is-open'));
   });
 }
 
