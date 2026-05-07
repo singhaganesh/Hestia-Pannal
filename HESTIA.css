@@ -305,21 +305,23 @@ body {
   margin: 0 !important;
   width: 18px;
   height: 18px;
-  accent-color: var(--primary);
+  accent-color: #10b981; /* Matches our green theme */
   order: unset !important;
 }
 
-/* Selected State - Matches Website Theme */
+/* Selected State - Vibrant Green for Selection */
 .radio-label:has(input:checked), 
 .checkbox-label:has(input:checked) {
-  border-color: var(--primary) !important;
-  background-color: #f0f4f8 !important;
-  box-shadow: 0 4px 12px rgba(45, 58, 80, 0.08);
+  border-color: #10b981 !important; /* Green border */
+  background-color: #f0fdf4 !important; /* Very light green background */
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
 }
 
-.radio-label:has(input:checked) i, 
-.checkbox-label:has(input:checked) i {
-  color: var(--primary);
+.radio-label:has(input:checked) .icon, 
+.checkbox-label:has(input:checked) .icon,
+.radio-label:has(input:checked) span, 
+.checkbox-label:has(input:checked) span {
+  color: #059669 !important; /* Dark green text/icon */
 }
 
 
@@ -729,6 +731,12 @@ td {
 #status .notification-controls .btn:hover {
   background: #ffedd5 !important;
   border-color: #fdba74 !important;
+}
+
+/* Yellow Header for specific Cards */
+.card-header.yellow-header .card-title,
+.card-header.yellow-header .card-title .icon {
+  color: #d97706 !important; /* Matches our vibrant orange theme, clearly visible as "yellow" */
 }
 
 
