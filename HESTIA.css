@@ -724,26 +724,41 @@ td {
 #status .btn-danger,
 #status .btn-accent,
 #status .btn-reset,
-#config .btn-primary,
 #config .btn-reset,
-#gsm .btn-primary,
-#device .btn-primary,
-#contact .btn-danger {
+#device .btn-primary {
   background: #f3f4f6 !important;
   color: #111827 !important;
   border: 1px solid #d1d5db !important;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
 }
 
-/* Specific GSM Reset Styling (Matches STOP SMS exactly) */
-#gsm .btn.btn-reset {
+/* System Configuration & GSM Primary Buttons (Light Blue Theme) */
+#config .btn.btn-primary,
+#gsm .btn.btn-primary {
+  background: #e0f2fe !important; 
+  color: #0284c7 !important;      
+  border: 1px solid #bae6fd !important;
+  font-weight: 800 !important;
+}
+
+#config .btn.btn-primary:hover,
+#gsm .btn.btn-primary:hover {
+  background: #bae6fd !important;
+  border-color: #7dd3fc !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Specific Reset/Danger Styling (Orange Theme) */
+#gsm .btn.btn-reset,
+#contact .btn.btn-danger {
   background: #fff7ed !important; 
   color: #ea580c !important;      
   border: 1px solid #fed7aa !important;
   font-weight: 800 !important;
 }
 
-#gsm .btn.btn-reset:hover {
+#gsm .btn.btn-reset:hover,
+#contact .btn.btn-danger:hover {
   background: #ffedd5 !important;
   border-color: #fdba74 !important;
 }
