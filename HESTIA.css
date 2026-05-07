@@ -208,8 +208,17 @@ body {
   gap: 6px;
 }
 
-.status-badge.active { background: #f0fdf4; color: #16a34a; border-color: #bbf7d0; }
-.status-badge.danger { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
+.status-badge.active { 
+  background: #f0fdf4 !important; 
+  color: #16a34a !important; 
+  border-color: #bbf7d0 !important; 
+}
+
+.status-badge.danger { 
+  background: #fef2f2 !important; 
+  color: #dc2626 !important; 
+  border-color: #fecaca !important; 
+}
 
 .datetime {
   font-size: 11px;

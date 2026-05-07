@@ -244,48 +244,20 @@ function handleZoneCombinedStatus(zoneNum, leftStatus, rightStatus) {
 
 
 function updateStatusBadge(id, isActive, value) {
-
   const el = document.getElementById(id);
+  if (!el) return;
+
   el.classList.remove('active', 'warning', 'danger');
 
-  let text = el.querySelector('span');
-
-  if (!text) {
-    text = document.createElement('span');
-    el.appendChild(text);
+  // status color (only for specific badges requested: BATTERY, SIREN, WIFI, LAN, GSM)
+  const colorBadges = ['batteryStatus', 'sirenStatus', 'wifiStatus', 'lanStatus', 'gsmStatus'];
+  if (colorBadges.includes(id)) {
+    if (isActive) {
+      el.classList.add('active');
+    } else {
+      el.classList.add('danger');
+    }
   }
-
-  // 🔥 emoji decide karo based on id + status
-  let emoji = "";
-
-  if (id === 'batteryStatus') {
-    emoji = isActive ? "🔋" : "🔋";
-  } 
-  else if (id === 'sirenStatus') {
-    emoji = isActive ? "🚨" : "🚨";
-  } 
-  else if (id === 'wifiStatus') {
-    emoji = isActive ? "ᯤ" : "ᯤ";
-  } 
-  else if (id === 'lanStatus') {
-    emoji = isActive ? "🌐" : "🌐";
-  } 
-  else if (id === 'gsmStatus') {
-    emoji = isActive ? "📡" : "📡";
-  } 
-  else if (id === 'sysStatus') {
-    emoji = isActive ? "⚙️" : "⚙️";
-  }
-
-  // status color
-  if (isActive) {
-    el.classList.add('active');
-  } else {
-    el.classList.add('danger');
-  }
-
-  // 🔥 FINAL TEXT (emoji + value)
-  text.textContent = emoji + " " + value;
 }
 
 function updateConnectionStatus(connected) {
