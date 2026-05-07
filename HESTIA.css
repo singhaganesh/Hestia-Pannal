@@ -362,6 +362,36 @@ body {
   color: #d97706 !important;
 }
 
+.fire-text {
+  color: #dc2626 !important;
+  font-weight: 700 !important;
+}
+
+.select-fire {
+  color: #dc2626 !important;
+  font-weight: 700 !important;
+}
+
+.select-fault {
+  color: #d97706 !important;
+  font-weight: 700 !important;
+}
+
+option[value*="FIRE"] {
+  color: #dc2626 !important;
+  font-weight: 700;
+  background-color: white;
+}
+
+option[value*="FAULT"],
+option[value*="SUPERV"],
+option[value*="WALKTE"],
+option {
+  color: #d97706 !important;
+  font-weight: 700;
+  background-color: white;
+}
+
 /* Page Header */
 .page-header {
   margin-bottom: 24px;
@@ -490,8 +520,13 @@ input, select {
   border-radius: 10px;
   background: #f8fafc;
   font-size: 14px;
+  color: var(--text-primary);
   transition: var(--transition);
   margin-top: 4px;
+}
+
+#config select {
+  color: #d97706; /* Default yellow for config page selects */
 }
 
 .btn {
@@ -604,7 +639,7 @@ td {
   font-weight: 700;
   border-radius: 8px;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: #d97706; /* Default yellow/amber */
 }
 
 .contact-toggle button.active {
@@ -962,4 +997,10 @@ td {
   .zone-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Yellow Header for specific Cards */
+.card-header.yellow-header .card-title,
+.card-header.yellow-header .card-title .icon {
+  color: #d97706 !important;
 }

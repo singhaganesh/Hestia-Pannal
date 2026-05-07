@@ -2,6 +2,34 @@
 let socket;
 let wsConnected = false;
 
+function updateSelectColor(select) {
+  if (!select) return;
+  const val = select.value.toUpperCase();
+  if (val === "") {
+    select.style.cssText = "color: #1e293b !important; font-weight: 700 !important;";
+  } else if (val.includes('FIRE')) {
+    select.style.cssText = "color: #dc2626 !important; font-weight: 700 !important;";
+  } else {
+    select.style.cssText = "color: #d97706 !important; font-weight: 700 !important;";
+  }
+}
+
+// Initialize all selects on load and after any content change
+function initAllSelects() {
+  const selects = document.querySelectorAll('select');
+  selects.forEach(s => {
+    updateSelectColor(s);
+    if (!s.dataset.colorInited) {
+      s.addEventListener('change', () => updateSelectColor(s));
+      s.dataset.colorInited = 'true';
+    }
+  });
+}
+
+window.addEventListener('load', initAllSelects);
+document.addEventListener('DOMContentLoaded', initAllSelects);
+setInterval(initAllSelects, 2000); // Periodic check for dynamic content
+
 function initWebSocket() {
   socket = new WebSocket("ws://" + window.location.hostname + ":81/");
   console.log(window.location.hostname);
@@ -107,8 +135,7 @@ function initWebSocket() {
        + "<th>Action</th>"
        + "</tr>";
 
-  html += rows.replace(/<\/tr>/g,
-      "<td><button onclick=\"deleteFire(this)\">Delete</button></td></tr>");
+  html += rows.replace(/<\/tr>/g, "<td><button onclick=\"deleteFire(this)\">Delete</button></td></tr>");
 
   html += "</table>";
 
@@ -130,8 +157,7 @@ if (data.startsWith("NUMT:")) {
        + "<th>Action</th>"
        + "</tr>";
 
-  html += rows.replace(/<\/tr>/g,
-      "<td><button onclick=\"deleteFault(this)\">Delete</button></td></tr>");
+  html += rows.replace(/<\/tr>/g, "<td><button onclick=\"deleteFault(this)\">Delete</button></td></tr>");
 
   html += "</table>";
 
@@ -341,7 +367,8 @@ function setContactToggle(activeType) {
   const inactiveStyle = {
     transform: 'translateY(0)',
     boxShadow: 'none',
-    border: 'none'
+    border: 'none',
+    color: '' // Reset to default (or CSS class will handle)
   };
 
   Object.assign(fireBtn.style, inactiveStyle);
@@ -351,10 +378,12 @@ function setContactToggle(activeType) {
     fireBtn.style.transform = 'translateY(-1px)';
     fireBtn.style.boxShadow = '0 4px 12px rgba(239, 68, 68, 0.35)';
     fireBtn.style.border = '2px solid #dc2626';
+    fireBtn.style.color = '#dc2626';
   } else if (activeType === 'fault') {
     faultBtn.style.transform = 'translateY(-1px)';
     faultBtn.style.boxShadow = '0 4px 12px rgba(245, 158, 11, 0.35)';
     faultBtn.style.border = '2px solid #d97706';
+    faultBtn.style.color = '#d97706';
   }
 }
 
