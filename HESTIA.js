@@ -54,7 +54,7 @@ function initWebSocket() {
       const leftStatus = combinedZoneMatch[2].trim();
       const rightStatus = combinedZoneMatch[3].trim();
       handleZoneCombinedStatus(zoneNum, leftStatus, rightStatus);
-    }
+    } 
     
     // Zone Status Handlers
     if (data.startsWith("Zone1_Status::")) {
@@ -218,15 +218,16 @@ function handleZoneStatusNew(zoneNum, modeStatus) {
   if (parts.length < 2) return;
 
   let mode = parts[0];
-  let status = parts[1];
+let status = parts[1];
 
   // Remove old classes
-  zoneBlock.classList.remove('alarm', 'warning', 'isolated');
+  zoneBlock.classList.remove('alarm', 'warning', 'isolated', 'normal');
 
   let icon = 'check-circle';
   let className = 'normal';
 
-  switch(status) {
+  switch(status.toUpperCase()) {
+    case "TRIGGER":
     case "FIRE":
       icon = 'fire';
       className = 'fire';
@@ -254,6 +255,7 @@ function handleZoneStatusNew(zoneNum, modeStatus) {
     case "NORMAL":
       icon = 'check';
       className = 'normal';
+      zoneBlock.classList.add('normal');
       break;
   }
 
@@ -795,4 +797,4 @@ window.onload = () => {
   showSection('status');
   setContactToggle('fire');
   initCustomSelects();
-};
+};

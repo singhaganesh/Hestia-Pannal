@@ -440,9 +440,10 @@ option[value*="WALKTE"] {
   box-shadow: var(--shadow-md);
 }
 
-.zone-block.alarm { border-top: 4px solid var(--danger); }
+.zone-block.alarm { border: 2px solid var(--danger) !important; }
 .zone-block.warning { border-top: 4px solid var(--warning); }
-.zone-block.normal { border-top: 4px solid var(--success); }
+.zone-block.normal { border: 2px solid var(--success) !important; }
+.zone-block.isolated { border-top: 4px solid var(--muted); }
 
 .zone-block h3 {
   font-size: 16px;
