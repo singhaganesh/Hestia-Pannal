@@ -175,8 +175,18 @@ if (data.startsWith("NUMT:")) {
     if (data.startsWith("GSM_SIG:")) {
       let sig = parseInt(data.split(":")[1]);
       sig = Math.max(0, Math.min(sig, 100));
-      document.getElementById("gsmSignal").style.width = sig + "%";
+      const gsmBar = document.getElementById("gsmSignal");
+      gsmBar.style.width = sig + "%";
       document.getElementById("gsmSignalPercent").innerText = sig + "%";
+      
+      // Dynamic Color Logic
+      if (sig <= 25) {
+        gsmBar.style.backgroundColor = "#f97316"; // Orange
+      } else if (sig <= 50) {
+        gsmBar.style.backgroundColor = "#4ade80"; // Light Green
+      } else {
+        gsmBar.style.backgroundColor = "#166534"; // Dark Green
+      }
     }
 
     if (data.startsWith("GSM_OP:")) {

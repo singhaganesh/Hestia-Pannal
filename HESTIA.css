@@ -594,7 +594,7 @@ input:focus {
 .signal-fill {
   height: 100%;
   background: var(--success);
-  transition: width 0.5s;
+  transition: width 0.5s ease, background-color 0.5s ease;
 }
 
 /* Tables */
