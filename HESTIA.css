@@ -724,17 +724,17 @@ td {
 #status .btn-danger,
 #status .btn-accent,
 #status .btn-reset,
-#config .btn-reset,
-#device .btn-primary {
+#config .btn-reset {
   background: #f3f4f6 !important;
   color: #111827 !important;
   border: 1px solid #d1d5db !important;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
 }
 
-/* System Configuration & GSM Primary Buttons (Light Blue Theme) */
+/* System Configuration, GSM & Device Primary Buttons (Light Blue Theme) */
 #config .btn.btn-primary,
-#gsm .btn.btn-primary {
+#gsm .btn.btn-primary,
+#device .btn.btn-primary {
   background: #e0f2fe !important; 
   color: #0284c7 !important;      
   border: 1px solid #bae6fd !important;
@@ -742,7 +742,8 @@ td {
 }
 
 #config .btn.btn-primary:hover,
-#gsm .btn.btn-primary:hover {
+#gsm .btn.btn-primary:hover,
+#device .btn.btn-primary:hover {
   background: #bae6fd !important;
   border-color: #7dd3fc !important;
   box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15) !important;
