@@ -377,6 +377,11 @@ body {
   font-weight: 700 !important;
 }
 
+option[value=""] {
+  color: #1e293b !important;
+  font-weight: 700;
+}
+
 option[value*="FIRE"] {
   color: #dc2626 !important;
   font-weight: 700;
@@ -385,8 +390,7 @@ option[value*="FIRE"] {
 
 option[value*="FAULT"],
 option[value*="SUPERV"],
-option[value*="WALKTE"],
-option {
+option[value*="WALKTE"] {
   color: #d97706 !important;
   font-weight: 700;
   background-color: white;

@@ -5,12 +5,17 @@ let wsConnected = false;
 function updateSelectColor(select) {
   if (!select) return;
   const val = select.value.toUpperCase();
-  if (val === "") {
-    select.style.cssText = "color: #1e293b !important; font-weight: 700 !important;";
-  } else if (val.includes('FIRE')) {
-    select.style.cssText = "color: #dc2626 !important; font-weight: 700 !important;";
-  } else {
-    select.style.cssText = "color: #d97706 !important; font-weight: 700 !important;";
+  const customTriggerText = select.closest('.custom-select-wrapper')?.querySelector('.custom-select-trigger span');
+  
+  let color = "#1e293b";
+  if (val !== "") {
+    color = val.includes('FIRE') ? "#dc2626" : "#d97706";
+  }
+  
+  const style = `color: ${color} !important; font-weight: 700 !important;`;
+  select.style.cssText = style;
+  if (customTriggerText) {
+    customTriggerText.style.cssText = style;
   }
 }
 
@@ -706,6 +711,9 @@ function initCustomSelects() {
     const selectedText = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : "Select";
     trigger.innerHTML = `<span>${selectedText}</span><svg class="icon"><use href="#icon-chevron-down"></use></svg>`;
     wrapper.appendChild(trigger);
+    
+    // Initial color for trigger
+    updateSelectColor(select);
 
     
     // Create options container
@@ -718,7 +726,7 @@ function initCustomSelects() {
       if (option.selected) customOption.classList.add('selected');
       
       // Apply list item colors
-      if (option.value === "FIRE__") {
+      if (option.value.includes("FIRE")) {
         customOption.classList.add('status-fire-text');
       } else if (option.value !== "") {
         customOption.classList.add('status-warning-text');
